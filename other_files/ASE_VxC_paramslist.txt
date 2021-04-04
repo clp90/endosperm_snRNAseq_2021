@@ -1,0 +1,14 @@
+	parameter	value
+1	mincellsfrac	0.01
+2	minreads	10
+3	minreadspercell	10
+4	pval_cutoff	0.05
+5	log2fc_weak	0.5
+6	log2fc_med	2
+7	log2fc_strong	5
+8	mincountsnobias	20
+9	coef_nu	0.86043218062099
+10	coef_mu_ZINB	0.854560674021682
+11	coef_mu_NB	0.692837143705381
+12	log2fcmedval	1.31535544096388
+13	fracnodatathreshold	0.0571428571428571
