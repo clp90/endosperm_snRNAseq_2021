@@ -64,7 +64,7 @@ The full set of analyses performed for this project can be found in `snRNAseq_an
 We have included an R script, single_cell_RNAseq_plots.R, that can make several different types of plots from the data, given count matrices.
 
 - Count matrices (total expression CPM matrix `GSE157145_CPM_total_expression.txt` and maternal/paternal normalized count matrices `GSE157145_norm_maternal_counts.txt` and `GSE157145_norm_paternal_counts.txt`) can be downloaded from GEO here: TBD. These contain normalized CPM or counts for all CxV and VxC endosperm and seed coat nuclei (total expression matrix) and for all CxV and VxC endosperm nuclei (mat/pat matrices).
-- Two plot types ('gof' and 'cmp' always use all nuclei in the input matrix, with no option to specify to use only a specific subset. For these, mat/pat matrices containing CxV and VxC nuclei separately were added to other_files (`ASE_[CxV/VxC]_[m/p]counts_norm_fxheader.txt`).
+- Two plot types ('gof' and 'cmp') always use all nuclei in the input matrix, with no option to specify to use only a specific subset. For these, mat/pat matrices containing CxV and VxC nuclei separately were added to other_files/ (`ASE_[CxV/VxC]_[m/p]counts_norm_fxheader.txt`).
 
 ### 'dot' plots (ex. Fig. 1c)
 Makes dot plots of total expression or % maternal of either one or more genes, or averaged across groups of multiple genes (ex. MEGs, PEGs, etc.), over groups of nuclei (e.g. nuclei clusters). Dot size indicates the fraction of informative nuclei (non-zero counts), while dot color indicates average total expression or % maternal. Note that nuclei groups in --sampfile do not need to be numeric (see 'lin' example with cell cycle phases instead).
