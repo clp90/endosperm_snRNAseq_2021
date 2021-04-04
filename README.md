@@ -4,6 +4,7 @@ Scripts and files used in Picard et al. (2021). This readme outlines how to use 
 Publication: TBD.
 
 Associated GEO repository: TBD
+
 Some of this code is also available as part of github repository here: https://github.com/clp90/imprinting_analysis
 
 # Overview of analysis
