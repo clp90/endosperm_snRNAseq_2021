@@ -7,7 +7,7 @@ Associated GEO repository: TBD
 Some of this code is also available as part of github repository here: https://github.com/clp90/imprinting_analysis
 
 # Overview - full analysis using snRNAseq_analysis_main.sh
-The full set of analyses performed for this project can be found in `snRNAseq_analysis_main.sh`. This script can be used to run the full analysis or parts of the analysis to regenerate figures in the paper. The analysis is divided into 9 main steps (see below).
+The full set of analyses performed for this project can be found in `snRNAseq_analysis_main.sh`. The analysis is divided into 9 main steps (see below).
 
 ### Example Usage:
 (1) To start from beginning: 
