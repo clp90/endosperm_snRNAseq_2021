@@ -260,12 +260,10 @@ Versions of programs that were used indicated in brackets; links provided where 
 	out of the box on most setups, particularly on clusters using other schedulers, and will need to be adjusted to run on those. 
   It can also simply serve as a record of the analyses and code used for the paper.
   
-- Given its length, snRNAseq_analysis_main.sh can be restarted from the beginning of each of its 9 parts without re-running the previous parts (some parts do rely on output of prior parts, and this is *not* properly checked, however). For example,
+- Given its length, snRNAseq_analysis_main.sh can be restarted from the beginning of each of its 9 parts without re-running the previous parts (some parts do rely on output of prior parts, and this is *not* properly checked, however). For example, this will restart the analysis from step 3, assuming steps 1 and 2 already successfully completed and are stored in myoutdir/ already:
 ```
 ./snRNAseq_analysis_main.sh -o myoutdir -d required_files/snRNAseq_samplist.txt -3
 ```
-	will restart the analysis from step 3, assuming steps 1 and 2 already successfully completed and are stored
-	in myoutdir/ already.
 
 - Relevant files from that github are included in this repo for simplicity where possible in either required_files/ or other_files/. STAR indexes for metagenomes are not included (see above for how to generate them).
 	
