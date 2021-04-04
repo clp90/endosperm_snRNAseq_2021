@@ -1,0 +1,8 @@
+chr	Col	Ler
+Chr1	Chr1C	Chr1V
+Chr2	Chr2C	Chr2V
+Chr3	Chr3C	Chr3V
+Chr4	Chr4C	Chr4V
+Chr5	Chr5C	Chr5V
+ChrC	ChrCC	ChrCV
+ChrM	ChrMC	ChrMV
