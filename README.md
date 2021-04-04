@@ -61,28 +61,84 @@ The full set of analyses performed for this project can be found in `snRNAseq_an
 ### Full Usage and dependencies for snRNAseq_analysis_main.sh given at the bottom of this readme.
 
 # Visualizing the data
-We have included an R script, single_cell_RNAseq_plots.R, that can make several different types of plots from the data, given count matrices. Count matrices and other
-raw data from the paper have been included in the data/ subfolder of this repository.
+We have included an R script, single_cell_RNAseq_plots.R, that can make several different types of plots from the data, given count matrices.
 
-Count matrices (total expression CPM matrix `GSE157145_CPM_total_expression.txt` and maternal/paternal normalized count matrices `GSE157145_norm_maternal_counts.txt` and `GSE157145_norm_paternal_counts.txt`) can be downloaded from GEO here: TBD
+- Count matrices (total expression CPM matrix `GSE157145_CPM_total_expression.txt` and maternal/paternal normalized count matrices `GSE157145_norm_maternal_counts.txt` and `GSE157145_norm_paternal_counts.txt`) can be downloaded from GEO here: TBD. These contain normalized CPM or counts for all CxV and VxC endosperm and seed coat nuclei (total expression matrix) and for all CxV and VxC endosperm nuclei (mat/pat matrices).
+- Two plot types ('gof' and 'cmp' always use all nuclei in the input matrix, with no option to specify to use only a specific subset. For these, mat/pat matrices containing CxV and VxC nuclei separately were added to other_files (`ASE_[CxV/VxC]_[m/p]counts_norm_fxheader.txt`).
 
 ### 'dot' plots (ex. Fig. 1c)
-TBD
+Makes dot plots of total expression or % maternal of either one or more genes, or averaged across groups of multiple genes (ex. MEGs, PEGs, etc.), over groups of nuclei (e.g. nuclei clusters). Dot size indicates the fraction of informative nuclei (non-zero counts), while dot color indicates average total expression or % maternal. Note that nuclei groups in --sampfile do not need to be numeric (see 'lin' example with cell cycle phases instead).
+
+Average total expression over LCM marker genes from Belmonte et al. over CxV endosperm clusters (see Fig. 1c):
+```
+single_cell_RNAseq_plots.R dot example_plots/dot_expr --CPM GSE157145_CPM_total_expression.txt --sampfile other_files/CxV_endo_4DAP_final_clusters_noheader.txt --genefile other_files/Belmonte_all_markers_g_to_h.txt --yorder PEN,MCE,CZE --fillupper 6 --sizeupper 0.4 --dotsize 15 --allowmissinggenes
+```
+![Image](example_plots/dot_expr_plot.png)
+
+Average % maternal of three genes (a PEG, a MEG, and an unbiased gene) over CxV endosperm clusters:
+```
+$path_to_scripts/single_cell_RNAseq_plots.R dot example_plots/dot_impr --mcounts GSE157145_norm_maternal_counts.txt --pcounts GSE157145_norm_paternal_counts.txt --sampfile other_files/CxV_endo_4DAP_final_clusters_noheader.txt --genes AT3G50370,AT3G51240,AT4G08510
+```
+![Image](example_plots/dot_impr_plot.png)
 
 ### 'lin' connected line plots (ex. Fig. 3c)
-TBD
+Makes connected dot plots of total expression or mat/pat expression for a single gene, across groups of nuclei (e.g. nuclei clusters). Dot size indicates the fraction of informative nuclei (non-zero counts), while y-axis value indicates average total expression of nuclei in that group. When plotting mat/pat expression, can optionally add a line simulating 2x paternal counts, which theoretically should resemble maternal expression levels unless the gene is imprinted.
+
+Example 1 - average total expression of AT1G79840/GLABRA2 over CxV seed coat clusters (Extended data Fig. 3d):
+```
+single_cell_RNAseq_plots.R lin example_plots/lin_expr --CPM GSE157145_CPM_total_expression.txt --sampfile other_files/CxV_seedcoat_4DAP_final_clusters_noheader.txt --dotsize 30 --sizeupper 1 --ymin 0 --ymax 8 --includezeros --plotwidth 8 --genes AT1G79840
+```
+
+Example 2 - average mat/pat expression of AT5G48650 over cell cycle phases (CxV and VxC endosperm nuclei only) (Fig. S16b):
+```
+single_cell_RNAseq_plots.R lin example_plots/lin_impr --mcounts GSE157145_norm_maternal_counts.txt --pcounts GSE157145_norm_paternal_counts.txt --sampfile other_files/endo_4DAP_nuclei_cell_cycle.txt --dotsize 30 --addsims --noprelog --plotwidth 8 --sizeupper 1 --xorder G0,G1,G1toS,S,G2,M --ymin 0 --genes AT5G48650
+```
+Example1      |  Example2        
+:-------------------------:|:-------------------------:
+<img src="example_plots/lin_expr_plot.png" width="360" height="360">  |  <img src="example_plots/lin_impr_plot.png" width="360" height="360">
+
 
 ### 'bar' plots
-TBD
+Makes a bar chart showing mat/pat expression of all nuclei in the dataset, optionally ordered into groups (e.g. nuclei clusters). Maternal counts are shown as positive values, paternal counts as negative values.
+
+Mat/pat expression of all nuclei for gene AT3G50370 over all CxV 4 DAP endosperm nuclei, arranged according to clustering in Fig. 1b:
+```
+$path_to_scripts/single_cell_RNAseq_plots.R bar example_plots/bar --mcounts $outdir/imprinting_analysis/all_mcounts_merged.txt --pcounts $outdir/imprinting_analysis/all_pcounts_merged.txt --sampfile other_files/CxV_endo_4DAP_final_clusters_noheader.txt --genes AT3G50370
+```
+<img src="example_plots/bar_plot.png" width="900" height="400">
+
+Can also be used to plot total expression in individual nuclei instead of mat/pat expression (use --CPM instead of --mcounts/--pcounts).
 
 ### 'nuc' individual nuclei plots
-TBD
+Similar to 'bar' in terms of info content, but more easily shows multiple genes instead of just one. Each gene is represented by a row of dots, corresponding to cells/nuclei. Each dot's size is a function of number of allelic reads are present, color is a function of % maternal. 
+
+Plot of a PEG, a MEG, and an unbiased gene over all CxV 4 DAP endosperm nuclei, arranged according to clustering in Fig. 1b:
+```
+$path_to_scripts/single_cell_RNAseq_plots.R nuc example_plots/nuc --mcounts $outdir/imprinting_analysis/all_mcounts_merged.txt --pcounts $outdir/imprinting_analysis/all_pcounts_merged.txt --sampfile other_files/CxV_endo_4DAP_final_clusters_noheader.txt --genes AT3G50370,AT3G51240,AT4G08510
+```
+![Image](example_plots/nuc_plot.png)
 
 ### 'cmp' goodness of fit ZINB vs. NB comparison plots (ex. Fig. S8)
-TBD
+Goodness-of-fit plot that compares the ZINB and NB best fits, separately for both mat and pat counts. Used for fitting mat/pat counts for ASE analysis. See supplement for details on statistical framework. Uses a set of parameters identified during ASE analysis (see scripts/single_cell_ASE_analysis.R), provided in other_files/.
+
+Example of a gene where ZINB fit is better than NB fit, see Fig. S8:
+```
+$path_to_scripts/single_cell_RNAseq_plots.R cmp example_plots/cmp --mcounts other_files/ASE_CxV_mcounts_norm_fxheader.txt --pcounts other_files/ASE_CxV_pcounts_norm_fxheader.txt --ASE_params other_files/ASE_CxV_paramslist.txt --genes AT3G50370
+```
+<img src="example_plots/cmp_plot.png" width="540" height="450">
 
 ### 'gof' (goodness of fit) plots
-TBD
+Goodness-of-fit plot that compares the fit of H1 (separate mat and pat fits) and H0 (joint fit) distribution for maternal and paternal counts, for a single gene. Used to identify genes with sufficient maternal or paternal bias to deviate from H0, possibly indicating imprinting. See supplement for details on statistical framework. Uses a set of parameters identified during ASE analysis (see scripts/single_cell_ASE_analysis.R), provided in other_files/. For this type of plot, the input matrix must contain all nuclei to be plotted (in the examples below, all CxV endosperm nuclei).
+
+Example:
+```
+$path_to_scripts/single_cell_RNAseq_plots.R gof example_plots/gof --mcounts other_files/ASE_CxV_mcounts_norm_fxheader.txt --pcounts other_files/ASE_CxV_pcounts_norm_fxheader.txt --ASE_params other_files/ASE_CxV_paramslist.txt --genes AT3G50370
+```
+AT3G50370 (unbiased)       |  AT3G51240 (MEG)          |  AT4G08510 (PEG)
+:-------------------------:|:-------------------------:|:-------------------------:
+<img src="example_plots/gof_plot_unbiased.png" width="540" height="300">  |  <img src="example_plots/gof_plot_MEG.png" width="540" height="300">  |  <img src="example_plots/gof_plot_PEG.png" width="540" height="300">
+
+For the unbiased gene H0 and H1 are roughly equivalent, while H1 (separate mat/pat fits) is significantly better for both the MEG and the PEG.
 
 
 ## Full Usage and Dependencies for snRNAseq_analysis_main.sh
