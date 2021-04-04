@@ -71,13 +71,13 @@ Makes dot plots of total expression or % maternal of either one or more genes, o
 
 Average total expression over LCM marker genes from Belmonte et al. over CxV endosperm clusters (see Fig. 1c):
 ```
-single_cell_RNAseq_plots.R dot example_plots/dot_expr --CPM GSE157145_CPM_total_expression.txt --sampfile other_files/CxV_endo_4DAP_final_clusters_noheader.txt --genefile other_files/Belmonte_all_markers_g_to_h.txt --yorder PEN,MCE,CZE --fillupper 6 --sizeupper 0.4 --dotsize 15 --allowmissinggenes
+scripts/single_cell_RNAseq_plots.R dot example_plots/dot_expr --CPM GSE157145_CPM_total_expression.txt --sampfile other_files/CxV_endo_4DAP_final_clusters_noheader.txt --genefile other_files/Belmonte_all_markers_g_to_h.txt --yorder PEN,MCE,CZE --fillupper 6 --sizeupper 0.4 --dotsize 15 --allowmissinggenes
 ```
 ![Image](example_plots/dot_expr_plot.png)
 
 Average % maternal of three genes (a PEG, a MEG, and an unbiased gene) over CxV endosperm clusters:
 ```
-$path_to_scripts/single_cell_RNAseq_plots.R dot example_plots/dot_impr --mcounts GSE157145_norm_maternal_counts.txt --pcounts GSE157145_norm_paternal_counts.txt --sampfile other_files/CxV_endo_4DAP_final_clusters_noheader.txt --genes AT3G50370,AT3G51240,AT4G08510
+scripts/single_cell_RNAseq_plots.R dot example_plots/dot_impr --mcounts GSE157145_norm_maternal_counts.txt --pcounts GSE157145_norm_paternal_counts.txt --sampfile other_files/CxV_endo_4DAP_final_clusters_noheader.txt --genes AT3G50370,AT3G51240,AT4G08510
 ```
 ![Image](example_plots/dot_impr_plot.png)
 
@@ -86,12 +86,12 @@ Makes connected dot plots of total expression or mat/pat expression for a single
 
 Example 1 - average total expression of AT1G79840/GLABRA2 over CxV seed coat clusters (Extended data Fig. 3d):
 ```
-single_cell_RNAseq_plots.R lin example_plots/lin_expr --CPM GSE157145_CPM_total_expression.txt --sampfile other_files/CxV_seedcoat_4DAP_final_clusters_noheader.txt --dotsize 30 --sizeupper 1 --ymin 0 --ymax 8 --includezeros --plotwidth 8 --genes AT1G79840
+scripts/single_cell_RNAseq_plots.R lin example_plots/lin_expr --CPM GSE157145_CPM_total_expression.txt --sampfile other_files/CxV_seedcoat_4DAP_final_clusters_noheader.txt --dotsize 30 --sizeupper 1 --ymin 0 --ymax 8 --includezeros --plotwidth 8 --genes AT1G79840
 ```
 
 Example 2 - average mat/pat expression of AT5G48650 over cell cycle phases (CxV and VxC endosperm nuclei only) (Fig. S16b):
 ```
-single_cell_RNAseq_plots.R lin example_plots/lin_impr --mcounts GSE157145_norm_maternal_counts.txt --pcounts GSE157145_norm_paternal_counts.txt --sampfile other_files/endo_4DAP_nuclei_cell_cycle.txt --dotsize 30 --addsims --noprelog --plotwidth 8 --sizeupper 1 --xorder G0,G1,G1toS,S,G2,M --ymin 0 --genes AT5G48650
+scripts/single_cell_RNAseq_plots.R lin example_plots/lin_impr --mcounts GSE157145_norm_maternal_counts.txt --pcounts GSE157145_norm_paternal_counts.txt --sampfile other_files/endo_4DAP_nuclei_cell_cycle.txt --dotsize 30 --addsims --noprelog --plotwidth 8 --sizeupper 1 --xorder G0,G1,G1toS,S,G2,M --ymin 0 --genes AT5G48650
 ```
 Example1      |  Example2        
 :-------------------------:|:-------------------------:
@@ -103,7 +103,7 @@ Makes a bar chart showing mat/pat expression of all nuclei in the dataset, optio
 
 Mat/pat expression of all nuclei for gene AT3G50370 over all CxV 4 DAP endosperm nuclei, arranged according to clustering in Fig. 1b:
 ```
-$path_to_scripts/single_cell_RNAseq_plots.R bar example_plots/bar --mcounts $outdir/imprinting_analysis/all_mcounts_merged.txt --pcounts $outdir/imprinting_analysis/all_pcounts_merged.txt --sampfile other_files/CxV_endo_4DAP_final_clusters_noheader.txt --genes AT3G50370
+scripts/single_cell_RNAseq_plots.R bar example_plots/bar --mcounts $outdir/imprinting_analysis/all_mcounts_merged.txt --pcounts $outdir/imprinting_analysis/all_pcounts_merged.txt --sampfile other_files/CxV_endo_4DAP_final_clusters_noheader.txt --genes AT3G50370
 ```
 <img src="example_plots/bar_plot.png" width="900" height="400">
 
@@ -114,7 +114,7 @@ Similar to 'bar' in terms of info content, but more easily shows multiple genes 
 
 Plot of a PEG, a MEG, and an unbiased gene over all CxV 4 DAP endosperm nuclei, arranged according to clustering in Fig. 1b:
 ```
-$path_to_scripts/single_cell_RNAseq_plots.R nuc example_plots/nuc --mcounts $outdir/imprinting_analysis/all_mcounts_merged.txt --pcounts $outdir/imprinting_analysis/all_pcounts_merged.txt --sampfile other_files/CxV_endo_4DAP_final_clusters_noheader.txt --genes AT3G50370,AT3G51240,AT4G08510
+scripts/single_cell_RNAseq_plots.R nuc example_plots/nuc --mcounts $outdir/imprinting_analysis/all_mcounts_merged.txt --pcounts $outdir/imprinting_analysis/all_pcounts_merged.txt --sampfile other_files/CxV_endo_4DAP_final_clusters_noheader.txt --genes AT3G50370,AT3G51240,AT4G08510
 ```
 ![Image](example_plots/nuc_plot.png)
 
@@ -123,7 +123,7 @@ Goodness-of-fit plot that compares the ZINB and NB best fits, separately for bot
 
 Example of a gene where ZINB fit is better than NB fit, see Fig. S8:
 ```
-$path_to_scripts/single_cell_RNAseq_plots.R cmp example_plots/cmp --mcounts other_files/ASE_CxV_mcounts_norm_fxheader.txt --pcounts other_files/ASE_CxV_pcounts_norm_fxheader.txt --ASE_params other_files/ASE_CxV_paramslist.txt --genes AT3G50370
+scripts/single_cell_RNAseq_plots.R cmp example_plots/cmp --mcounts other_files/ASE_CxV_mcounts_norm_fxheader.txt --pcounts other_files/ASE_CxV_pcounts_norm_fxheader.txt --ASE_params other_files/ASE_CxV_paramslist.txt --genes AT3G50370
 ```
 <img src="example_plots/cmp_plot.png" width="540" height="450">
 
@@ -132,7 +132,7 @@ Goodness-of-fit plot that compares the fit of H1 (separate mat and pat fits) and
 
 Example:
 ```
-$path_to_scripts/single_cell_RNAseq_plots.R gof example_plots/gof --mcounts other_files/ASE_CxV_mcounts_norm_fxheader.txt --pcounts other_files/ASE_CxV_pcounts_norm_fxheader.txt --ASE_params other_files/ASE_CxV_paramslist.txt --genes AT3G50370
+scripts/single_cell_RNAseq_plots.R gof example_plots/gof --mcounts other_files/ASE_CxV_mcounts_norm_fxheader.txt --pcounts other_files/ASE_CxV_pcounts_norm_fxheader.txt --ASE_params other_files/ASE_CxV_paramslist.txt --genes AT3G50370
 ```
 AT3G50370 (unbiased)       |  AT3G51240 (MEG)          |  AT4G08510 (PEG)
 :-------------------------:|:-------------------------:|:-------------------------:
