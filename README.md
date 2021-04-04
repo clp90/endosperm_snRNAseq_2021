@@ -6,7 +6,7 @@ Publication: TBD.
 Associated GEO repository: TBD
 Some of this code is also available as part of github repository here: https://github.com/clp90/imprinting_analysis
 
-# Overview - full analysis using snRNAseq_analysis_main.sh
+# Overview of analysis
 The full set of analyses performed for this project can be found in `snRNAseq_analysis_main.sh`. The analysis is divided into 9 main steps (see below).
 
 ### Example Usage:
@@ -255,24 +255,22 @@ Versions of programs that were used indicated in brackets; links provided where 
 
 ### Notes: 
 
-- Although snRNAseq_analysis_main.sh should rerun every analysis in the paper, it is very long, has a lot of dependencies, and was designed
+- Although `snRNAseq_analysis_main.sh` should rerun every analysis in the paper, it is very long, has a lot of dependencies, and was designed
 	to run on the Whitehead Institute cluster, an LSF cluster (and uses the LSF framework to send out jobs). So it probably won't work 
 	out of the box on most setups, particularly on clusters using other schedulers, and will need to be adjusted to run on those. 
   It can also simply serve as a record of the analyses and code used for the paper.
   
-- Given its length, snRNAseq_analysis_main.sh is separated into 9 main parts and can be restarted from the beginning 
-	of each part without re-running the previous parts (some parts do rely on output of prior parts, and this is *not* properly checked, however). For example,
-
-	./snRNAseq_analysis_main.sh -o myoutdir -d required_files/snRNAseq_samplist.txt -3
-
+- Given its length, snRNAseq_analysis_main.sh can be restarted from the beginning of each of its 9 parts without re-running the previous parts (some parts do rely on output of prior parts, and this is *not* properly checked, however). For example,
+```
+./snRNAseq_analysis_main.sh -o myoutdir -d required_files/snRNAseq_samplist.txt -3
+```
 	will restart the analysis from step 3, assuming steps 1 and 2 already successfully completed and are stored
 	in myoutdir/ already.
 
-- Relevant files from that github are included in this repo for simplicity where possible in either required_files/ or other_files/ STAR indexes for metagenomes are not included (see above for how to generate them).
+- Relevant files from that github are included in this repo for simplicity where possible in either required_files/ or other_files/. STAR indexes for metagenomes are not included (see above for how to generate them).
 	
-- All custom helper scripts, etc. are provided in either the same directory as the main script, or
-	the scripts/ subdirectory. By default, this script will look for those files in those locations without the user needing to specify anything. However, if any of those
-	files are moved relative to this script, then you can re-point to the required scripts and files using the -p, -s and -f flags.
+- All custom helper scripts for `snRNAseq_analysis_main.sh` are provided in either the same directory as the main script, or the scripts/ subdirectory. By default, this script will look for those files in those locations without the user needing to specify anything. However, if any of those files are moved relative to this script, then you can re-point to the required scripts and files using the -p, -s and -f options.
+- Most scripts have detailed header sections with more information on what the script is intended to do.
 
 
 
