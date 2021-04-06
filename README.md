@@ -252,6 +252,7 @@ Versions of programs that were used indicated in brackets; links provided where 
 	- `argparse` (Thomas Waldmann) [1.1]
 	- `numpy` (Travis E. Oliphant et al.) [1.15.1]
 	- `cutadapt` (Martin 2011) [1.18]
+	- `HTSeq` (Anders et al. 2014) [0.11.0]
 
 ### Notes: 
 
