@@ -250,8 +250,8 @@ Versions of programs that were used indicated in brackets; links provided where 
 	- See `scripts/check_dependencies.R`	
 	
 6. Required python packages:
-	- `argparse` (Thomas Waldmann)
-	- `numpy` (Travis E. Oliphant et al.)
+	- `argparse` (Thomas Waldmann) [1.1]
+	- `numpy` (Travis E. Oliphant et al.) [1.15.1]
 	- `cutadapt` (Martin 2011) [1.18]
 
 ### Notes: 
