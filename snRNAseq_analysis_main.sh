@@ -170,8 +170,10 @@ Dependencies:
 	- See scripts/check_dependencies.R	
 	
 (6) Required python packages:
-	- argparse (Thomas Waldmann)
-	- numpy (Travis E. Oliphant et al.)
+	- argparse (Thomas Waldmann) [1.1]
+	- numpy (Travis E. Oliphant et al.) [1.15.1]
+	- HTSeq (Anders et al. 2014) [0.11.0]
+	- cutadapt (Martin 2011) [1.18]
 
 ------------------------------------------------------------------------------------
 EOF
@@ -382,6 +384,8 @@ $path_to_scripts/check_dependencies.R > /dev/null || { echo "Not all required R 
 # ----------------------
 pip show argparse -q 2> /dev/null || { echo "Required python package argparse not installed, exiting."; exit 1; }
 pip show numpy -q 2> /dev/null || { echo "Required python package numpy not installed, exiting."; exit 1; }
+pip show cutadapt -q 2> /dev/null || { echo "Required python package cutadapt not installed, exiting."; exit 1; }
+pip show HTSeq -q 2> /dev/null || { echo "Required python package HTSeq not installed, exiting."; exit 1; }
 
 # Done checking all dependencies. Stop here if -0 flagged.
 # ----------------------
