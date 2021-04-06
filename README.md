@@ -202,11 +202,10 @@ Versions of programs that were used indicated in brackets; links provided where 
 	- `samtools` ((c) Genome Research Ltd.) [v.1.11] [link](http://www.htslib.org)
 	- `python` v.2.x.x (Python Software Foundation) [v2.7.17] [link](https://www.python.org/downloads/release/python-2717/)
 	- `R` (R Core Team) [v3.6.3] [link](https://www.r-project.org)
-  - `fastqc` (Andrews 2010) [v0.11.8] [link](https://www.bioinformatics.babraham.ac.uk/projects/download.html#fastqc)
-  - `trim_galore` (Krueger 2012) [v0.5.0] [link](https://www.bioinformatics.babraham.ac.uk/projects/trim_galore/)
-  - `samtools` (Li *et al.* 2009) [v1.9] [link](http://www.htslib.org/)
-  - `STAR` (Dobin *et al.* 2012) [v2.6.1d] [link](https://github.com/alexdobin/STAR)
-  - `Java 1.8+` [v1.8.0_191] [link](https://www.java.com/en/download/manual.jsp)
+  	- `fastqc` (Andrews 2010) [v0.11.8] [link](https://www.bioinformatics.babraham.ac.uk/projects/download.html#fastqc)
+  	- `trim_galore` (Krueger 2012) [v0.5.0] [link](https://www.bioinformatics.babraham.ac.uk/projects/trim_galore/)
+ 	- `STAR` (Dobin *et al.* 2012) [v2.6.1d] [link](https://github.com/alexdobin/STAR)
+  	- `Java 1.8+` [v1.8.0_191] [link](https://www.java.com/en/download/manual.jsp)
 	
 2. Must be in path_to_pipelines (included in repository):
 	- `rna_seq_map.sh` (by CLP)
