@@ -1,7 +1,9 @@
 # Endosperm snRNA-seq analysis v.1.0
 Scripts and files used in Picard et al. (2021). This readme outlines how to use snRNAseq_analysis_main.sh to rerun all analyses in the paper, as well as giving examples for different ways to visualize the data for those who want to explore or look at their favorite genes. 
 
-Publication: TBD.
+Publication: https://www.nature.com/articles/s41477-021-00922-0
+
+Citation: Picard CL, Povilus RA, Williams BP, Gehring M. Transcriptional and imprinting complexity in Arabidopsis seeds at single-nucleus resolution. Nat Plants. 2021;7(6):730-738. doi:10.1038/s41477-021-00922-0
 
 Associated GEO repository: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE157145
 
